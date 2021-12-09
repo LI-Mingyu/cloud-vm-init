@@ -24,3 +24,4 @@ apt install -y build-essential git mpich libgoogle-glog-dev
 
 echo "ClientAliveInterval 30" >> /etc/ssh/sshd_config
 echo "ClientAliveCountMax 6" >> /etc/ssh/sshd_config
+systemctl restart sshd
