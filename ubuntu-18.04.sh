@@ -1,6 +1,6 @@
 #!/bin/bash
-#file:docker_install.sh
- 
+
+# 安装docker 
 function docker_install()
 {
 	echo "检查Docker......"
@@ -19,8 +19,9 @@ function docker_install()
 # 执行函数
 docker_install
 
+# 开发者环境
 apt update
-apt install -y build-essential git mpich libgoogle-glog-dev 
+apt install -y build-essential git cmake 
 
 echo "ClientAliveInterval 30" >> /etc/ssh/sshd_config
 echo "ClientAliveCountMax 6" >> /etc/ssh/sshd_config
