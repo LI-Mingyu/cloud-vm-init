@@ -40,10 +40,10 @@ su -c 'minikube start --driver=none'
 
 # helm & kubevela
 curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
-helm repo add kubevela https://charts.kubevela.net/core
-helm repo update
-helm install --create-namespace -n vela-system kubevela kubevela/vela-core --set multicluster.enabled=true --wait
-helm test kubevela -n vela-system
+su -c 'helm repo add kubevela https://charts.kubevela.net/core'
+su -c 'helm repo update'
+su -c 'helm install --create-namespace -n vela-system kubevela kubevela/vela-core --set multicluster.enabled=true --wait'
+su -c 'helm test kubevela -n vela-system'
 
 # mpi-dev
 
