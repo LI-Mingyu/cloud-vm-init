@@ -45,6 +45,9 @@ sleep 30 #等待k8s就绪
 # 让ubuntu（ubuntu云主机默认用户）有通过kubectl命令行操作本地k8s单节点集群的权限
 cp -r /root/.kube /home/ubuntu/
 chown -hR ubuntu /home/ubuntu/.kube
+cp -r /root/.minikube /home/ubuntu/
+chown -hR ubuntu /home/ubuntu/.minikube
+sed -i 's/root/home\/ubuntu/g' /home/ubuntu/.kube/config
 
 # helm & kubevela
 curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
