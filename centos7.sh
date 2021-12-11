@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# 安装docker 
+# 安装docker # ref: https://blog.csdn.net/boonya/article/details/83011074 
 function docker_install()
 {
 	echo "检查Docker......"
