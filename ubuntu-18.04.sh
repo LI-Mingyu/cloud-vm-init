@@ -39,6 +39,8 @@ su -c 'install minikube-linux-amd64 /usr/local/bin/minikube'
 apt install -y conntrack # Kubernetes 1.22.3 requires conntrack to be installed in root's path
 su -c 'minikube start --driver=none'
 
+sleep 30 #等待k8s就绪
+
 # 让ubuntu（ubuntu云主机默认用户）有通过kubectl命令行操作本地k8s单节点集群的权限
 cp -r /root/.kube /home/ubuntu/
 chown -hR ubuntu /home/ubuntu/.kube
