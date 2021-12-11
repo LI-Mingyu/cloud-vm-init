@@ -20,7 +20,8 @@ function docker_install()
 docker_install
 
 # 开发者环境
-yum update -y && yum install -y build-essential git cmake 
+yum update -y && yum groupinstall "Development Tools"
+yum install -y git cmake 
 
 echo "ClientAliveInterval 30" >> /etc/ssh/sshd_config
 echo "ClientAliveCountMax 6" >> /etc/ssh/sshd_config
