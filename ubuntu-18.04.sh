@@ -23,6 +23,7 @@ docker_install
 apt update
 apt install -y build-essential git cmake 
 
+echo "" >> /etc/ssh/sshd_config # 给sshd_config配置文件的末尾增加一个换行，以防发生格式错误
 echo "ClientAliveInterval 30" >> /etc/ssh/sshd_config
 echo "ClientAliveCountMax 6" >> /etc/ssh/sshd_config
 systemctl restart sshd
