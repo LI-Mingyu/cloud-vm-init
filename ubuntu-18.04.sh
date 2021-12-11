@@ -30,8 +30,8 @@ systemctl restart sshd
 
 # zsh
 apt install -y zsh
-chsh -s /bin/zsh
-curl -L https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh | sh
+sed -in '/ubuntu/{s/bash/zsh/}' /etc/passwd
+su - ubuntu -c 'curl -L https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh | sh'
 
 # kubectl & minkube
 curl -Lo kubectl https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl && chmod +x kubectl && sudo cp kubectl /usr/local/bin/ && rm kubectl
@@ -45,6 +45,9 @@ sleep 30 #等待k8s就绪
 # 让ubuntu（ubuntu云主机默认用户）有通过kubectl命令行操作本地k8s单节点集群的权限
 cp -r /root/.kube /home/ubuntu/
 chown -hR ubuntu /home/ubuntu/.kube
+cp -r /root/.minikube /home/ubuntu/
+chown -hR ubuntu /home/ubuntu/.minikube
+sed -i 's/root/home\/ubuntu/g' /home/ubuntu/.kube/config
 
 # helm & kubevela
 curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
