@@ -55,3 +55,6 @@ su -c 'helm repo add kubevela https://charts.kubevela.net/core'
 su -c 'helm repo update'
 su -c 'helm install --create-namespace -n vela-system kubevela kubevela/vela-core --set multicluster.enabled=true --wait'
 su -c 'helm test kubevela -n vela-system'
+
+# mpi-dev
+# TODO
