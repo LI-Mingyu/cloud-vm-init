@@ -49,12 +49,10 @@ cp -r /root/.minikube /home/ubuntu/
 chown -hR ubuntu /home/ubuntu/.minikube
 sed -i 's/root/home\/ubuntu/g' /home/ubuntu/.kube/config
 
-# helm & kubevela
+# helm
 curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
-su -c 'helm repo add kubevela https://charts.kubevela.net/core'
+su -c 'helm repo add bitnami https://charts.bitnami.com/bitnami'
 su -c 'helm repo update'
-su -c 'helm install --create-namespace -n vela-system kubevela kubevela/vela-core --set multicluster.enabled=true --wait'
-su -c 'helm test kubevela -n vela-system'
 
 # mpi-dev
 # TODO
