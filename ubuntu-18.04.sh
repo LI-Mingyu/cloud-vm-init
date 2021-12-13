@@ -28,10 +28,15 @@ echo "ClientAliveInterval 30" >> /etc/ssh/sshd_config
 echo "ClientAliveCountMax 6" >> /etc/ssh/sshd_config
 systemctl restart sshd
 
-# zsh
+# zsh & oh-my-zsh
 apt install -y zsh
 sed -in '/ubuntu/{s/bash/zsh/}' /etc/passwd
 su - ubuntu -c 'curl -L https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh | sh'
+
+# use zsh theme https://github.com/LI-Mingyu/lmy.zsh-theme/blob/master/lmy.zsh-theme
+curl -Lo /home/ubuntu/.oh-my-zsh/themes/lmy.zsh-theme https://raw.githubusercontent.com/LI-Mingyu/lmy.zsh-theme/master/lmy.zsh-theme
+chown ubuntu /home/ubuntu/.oh-my-zsh/themes/lmy.zsh-theme
+sed -i 's/^ZSH_THEME.*/ZSH_THEME=\"lmy\"/g' /home/ubuntu/.zshrc
 
 # kubectl & minkube
 curl -Lo kubectl https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl && chmod +x kubectl && sudo cp kubectl /usr/local/bin/ && rm kubectl
