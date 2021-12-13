@@ -56,5 +56,5 @@ su -c 'helm repo update'
 su -c 'helm install --create-namespace -n vela-system kubevela kubevela/vela-core --set multicluster.enabled=true --wait'
 su -c 'helm test kubevela -n vela-system'
 
-# mpi-dev
-# TODO
+# for cndev/k8s-training
+su - ubuntu -c 'git clone https://github.com/LI-Mingyu/cndev-tutorial.git'
