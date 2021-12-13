@@ -37,6 +37,8 @@ su - ubuntu -c 'curl -L https://raw.github.com/robbyrussell/oh-my-zsh/master/too
 curl -Lo /home/ubuntu/.oh-my-zsh/themes/lmy.zsh-theme https://raw.githubusercontent.com/LI-Mingyu/lmy.zsh-theme/master/lmy.zsh-theme
 chown ubuntu /home/ubuntu/.oh-my-zsh/themes/lmy.zsh-theme
 sed -i 's/^ZSH_THEME.*/ZSH_THEME=\"lmy\"/g' /home/ubuntu/.zshrc
+# enable autocompletion for docker cmd
+sed -in '/^plugins.*/{s/)/ docker)/}' /home/ubuntu/.zshrc
 
 # kubectl & minkube
 curl -Lo kubectl https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl && chmod +x kubectl && sudo cp kubectl /usr/local/bin/ && rm kubectl
@@ -44,6 +46,7 @@ curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-
 su -c 'install minikube-linux-amd64 /usr/local/bin/minikube'
 apt install -y conntrack # Kubernetes 1.22.3 requires conntrack to be installed in root's path
 su -c 'minikube start --driver=none'
+sed -in '/^plugins.*/{s/)/ kubectl)/}' /home/ubuntu/.zshrc # enable autocompletion for kubectl cmd
 
 sleep 30 #等待k8s就绪
 
@@ -58,6 +61,7 @@ sed -i 's/root/home\/ubuntu/g' /home/ubuntu/.kube/config
 curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
 su -c 'helm repo add bitnami https://charts.bitnami.com/bitnami'
 su -c 'helm repo update'
+sed -in '/^plugins.*/{s/)/ helm)/}' /home/ubuntu/.zshrc # enable autocompletion for helm cmd
 
 # mpi-dev
 # TODO
