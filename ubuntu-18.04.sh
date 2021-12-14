@@ -18,7 +18,7 @@ function docker_install() {
 docker_install
 
 USERNAME=$(ls /home | awk '{print $1}' | sed -n '1p') # 取 /home 目录第一个文件夹名称
-if [ $USERNAME = "" ]; then
+if [ "$USERNAME" = "" ]; then
     USERNAME="root"
 fi
 echo "The default user when first login:" $USERNAME
@@ -34,7 +34,7 @@ systemctl restart sshd
 
 # zsh & oh-my-zsh
 apt install -y zsh
-if [ $USERNAME = "root" ]; then
+if [ "$USERNAME" = "root" ]; then
     chsh -s /bin/zsh
 else
     sed -in "/$USERNAME/{s/bash/zsh/}" /etc/passwd
@@ -60,7 +60,7 @@ su - $USERNAME -c 'sed -in "/^plugins.*/{s/)/ kubectl)/}" $HOME/.zshrc' # enable
 sleep 30 #等待k8s就绪
 
 # 若默认用户为非root用户，让其有通过kubectl命令行操作本地k8s单节点集群的权限
-if [ $USERNAME != "root" ]; then
+if [ "$USERNAME" != "root" ]; then
     cp -r /root/.kube /home/$USERNAME/
     chown -hR $USERNAME /home/$USERNAME/.kube
     cp -r /root/.minikube /home/$USERNAME/
