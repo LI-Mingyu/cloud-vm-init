@@ -75,4 +75,4 @@ su - $USERNAME -c 'helm repo update'
 su - $USERNAME -c 'sed -in "/^plugins.*/{s/)/ helm)/}" $HOME/.zshrc' # enable autocompletion for helm cmd
 
 # for cndev/k8s-training
-su - ubuntu -c 'git clone https://github.com/LI-Mingyu/cndev-tutorial.git'
+su - $USERNAME -c 'git clone https://github.com/LI-Mingyu/cndev-tutorial.git'
