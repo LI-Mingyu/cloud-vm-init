@@ -74,5 +74,11 @@ su - $USERNAME -c 'helm repo add bitnami https://charts.bitnami.com/bitnami'
 su - $USERNAME -c 'helm repo update'
 su - $USERNAME -c 'sed -in "/^plugins.*/{s/)/ helm)/}" $HOME/.zshrc' # enable autocompletion for helm cmd
 
+# go-dev
+wget https://go.dev/dl/go1.17.5.linux-amd64.tar.gz
+rm -rf /usr/local/go && tar -C /usr/local -xzf go1.17.5.linux-amd64.tar.gz
+su - $USERNAME -c 'echo "export PATH=$PATH:/usr/local/go/bin" >> $HOME/.zshrc'
+su - $USERNAME -c 'sed -in "/^plugins.*/{s/)/ golang)/}" $HOME/.zshrc' # enable autocompletion for the go cmd
+
 # mpi-dev
 # TODO
