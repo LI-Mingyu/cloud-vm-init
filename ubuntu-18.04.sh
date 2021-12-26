@@ -47,7 +47,10 @@ su - $USERNAME -c 'sed -i "s/^ZSH_THEME.*/ZSH_THEME=\"lmy\"/g" $HOME/.zshrc'
 # enable autocompletion for docker cmd
 su - $USERNAME -c 'sed -in "/^plugins.*/{s/)/ docker)/}" $HOME/.zshrc'
 
-
+# docker-compose
+curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+chmod +x /usr/local/bin/docker-compose
+su - $USERNAME -c 'sed -in "/^plugins.*/{s/)/ docker-compose)/}" $HOME/.zshrc'
 
 # kubectl & minkube
 curl -Lo kubectl https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl && chmod +x kubectl && sudo cp kubectl /usr/local/bin/ && rm kubectl
