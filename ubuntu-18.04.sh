@@ -77,7 +77,7 @@ su - $USERNAME -c 'sed -in "/^plugins.*/{s/)/ helm)/}" $HOME/.zshrc' # enable au
 # go-dev
 wget https://go.dev/dl/go1.17.5.linux-amd64.tar.gz
 rm -rf /usr/local/go && tar -C /usr/local -xzf go1.17.5.linux-amd64.tar.gz
-su - $USERNAME -c 'echo "export PATH=$PATH:/usr/local/go/bin" >> $HOME/.zshrc'
+su - $USERNAME -c 'echo "export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin" >> $HOME/.zshrc'
 su - $USERNAME -c 'sed -in "/^plugins.*/{s/)/ golang)/}" $HOME/.zshrc' # enable autocompletion for the go cmd
 
 # mpi-dev
