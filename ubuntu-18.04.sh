@@ -54,7 +54,7 @@ curl -Lo kubectl https://storage.googleapis.com/kubernetes-release/release/$(cur
 curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
 install minikube-linux-amd64 /usr/local/bin/minikube
 apt install -y conntrack # Kubernetes 1.22.3 requires conntrack to be installed in root's path
-su -c 'minikube start --driver=none' # 这一行用 su -c 而不是直接执行，主要是因为要在/root/目录下，留下.minikube和.kube文件夹
+su -c 'minikube start --driver=none --kubernetes-version=v1.23.10' # 这一行用 su -c 而不是直接执行，主要是因为要在/root/目录下，留下.minikube和.kube文件夹。
 su - $USERNAME -c 'sed -in "/^plugins.*/{s/)/ kubectl)/}" $HOME/.zshrc' # enable autocompletion for kubectl cmd
 
 sleep 30 #等待k8s就绪
