@@ -8,11 +8,14 @@ function docker_install() {
         echo "检查到Docker已安装!"
     else
         echo "安装docker环境..."
-        curl -sSL https://get.daocloud.io/docker | sh
+        apt update
+        apt install -y apt-transport-https ca-certificates curl gnupg lsb-release
+        curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+        echo "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+        apt update
+        apt install -y docker-ce docker-ce-cli containerd.io
         echo "安装docker环境...安装完成!"
     fi
-    # 创建公用网络==bridge模式
-    #docker network create share_network
 }
 # 执行函数
 docker_install
