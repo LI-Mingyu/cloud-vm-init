@@ -14,6 +14,8 @@ function docker_install() {
         echo "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
         apt update
         apt install -y docker-ce docker-ce-cli containerd.io
+        echo "安装docker环境...安装完成!"
+    fi
 }
 # 执行函数
 docker_install
